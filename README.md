@@ -1,10 +1,12 @@
 # Ray Tracing in a Weekend
 
-Uploading my old code from this course to motivate me to finish it.
+Uploading my old code from this course to motivate me to finish it. Please check out `notes.md` for a full picture of what's going on.
 
 Learning `c++` and the basics of `c` made for a much smoother experience during this whole thing.
 
-## Notes to Self
+![render](image.jpg)
+
+## Extra
 
 Use the following code to get the render.
 
