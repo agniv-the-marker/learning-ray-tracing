@@ -175,6 +175,8 @@ pub fn cross(u: &Vec3, v: &Vec3) -> Vec3 {
 }
 
 pub fn unit_vector(v: &Vec3) -> Vec3 {
+    // different method unit_vector(vec) -> vec
+    // instead of vec.unit_vector() -> vec
     *v / v.length()
 }
 

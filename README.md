@@ -23,8 +23,8 @@ python converter.py
 For the rust version, use the following:
 
 ```bash
-cargo run --quiet > image.ppm
-python converter.py # this isn't working right now?
+cargo run > image.ppm # don't run quietly
+python converter.py
 ```
 
 Also, copilot can generate tests if you want, but make sure to do `cargo test` as well! Linting game is strong.
