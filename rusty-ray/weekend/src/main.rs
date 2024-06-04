@@ -5,15 +5,33 @@ use std::io::{self, Write}; // rust's std::clog method
 mod vec3;
 mod ray;
 mod color;
+mod hittable;
+mod sphere;
 
 // https://doc.rust-lang.org/book/ch07-02-defining-modules-to-control-scope-and-privacy.html
 // Will do a lib.rs header file eventually to export the modules
-use vec3::{Vec3, Point3};
+use vec3::{Vec3, Point3, unit_vector};
 use ray::Ray;
 use color::{Color, write_color};
 
+fn hit_sphere(center: &Point3, radius: f64, r: &Ray) -> f64 {
+    let oc = *center - *r.origin();
+    let a = r.direction().length_squared();
+    let h = r.direction().dot(&oc);
+    let c = oc.length_squared() - radius * radius;
+    let discriminant = h * h - a * c;
+    if discriminant < 0.0 {
+        return -1.0;
+    }
+    (h - discriminant.sqrt()) / a
+}
 
 fn ray_color(r: &Ray) -> Color {
+    let t = hit_sphere(&Point3::new(0.0, 0.0, -1.0), 0.5, r);
+    if t > 0.0 { 
+        let n = unit_vector(&(r.at(t) - Vec3::new(0.0, 0.0, -1.0)));
+        return 0.5*Color::new(n.x()+1.0, n.y()+1.0, n.z()+1.0); 
+    }
     let unit_direction = r.direction().unit_vector();
     let a = 0.5 * (unit_direction.y() + 1.0);
     let white = Color::new(1.0, 1.0, 1.0);
